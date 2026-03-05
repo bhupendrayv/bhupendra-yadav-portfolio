@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhupendra Yadav - Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #6366f1;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --bg-page: #f9fafb;
+            --bg-card: #ffffff;
+            --border: #e5e7eb;
+        }
+
+        @media dark {
+            :root {
+                --text-main: #f9fafb;
+                --text-muted: #d1d5db;
+                --bg-page: #111827;
+                --bg-card: #1f2937;
+                --border: #374151;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .resume-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .item {
+            margin-bottom: 1.5rem;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .item-subtitle {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .item-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .item-location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+        }
+
+        li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        .skill-category {
+            font-size: 0.95rem;
+        }
+
+        .skill-label {
+            font-weight: 700;
+            margin-right: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            background: var(--secondary);
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+
+            .resume-container {
+                box-shadow: none;
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .print-btn,
+            .back-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .resume-container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .item-header {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .item-date {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="resume-container">
+        <a href="/" class="back-btn">← Back to Portfolio</a>
+        <header>
+            <h1>Bhupendra Yadav</h1>
+            <div class="contact-info">
+                <span>📧 <a href="mailto:bhupendrayadav2077@gmail.com">bhupendrayadav2077@gmail.com</a></span>
+                <span>GitHub: <a href="https://github.com/bhupendrayv" target="_blank">GitHub</a></span>
+                <span>LinkedIn: <a href="https://linkedin.com" target="_blank">LinkedIn</a></span>
+                <span>📞 +91 9942199618</span>
+                <span>🌐 <a href="https://bhupendrayadav.com.np" target="_blank">bhupendrayadav.com.np</a></span>
+            </div>
+        </header>
+
+
+        <section>
+            <h2>Education</h2>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">SRM University AP</span>
+                    <span class="item-date">2023 – 2028</span>
+                </div>
+                <div class="item-header">
+                    <span class="item-subtitle">B.Tech in Computer Science and Engineering</span>
+                    <span class="item-location">Andhra Pradesh, India</span>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">Nasa National Secondary School</span>
+                    <span class="item-date">2020 – 2022</span>
+                </div>
+                <div class="item-header">
+                    <span class="item-subtitle">Intermediate (+2) (NEB)</span>
+                    <span class="item-location">Kathmandu, Nepal</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Projects</h2>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">MediConnect-Assistant</span>
+                    <span class="item-date">December 2025</span>
+                </div>
+                <div class="item-header">
+                    <span class="item-subtitle">JavaScript, HTML, CSS, React, Node.js, Express, Tailwind | <a
+                            href="https://github.com/bhupendrayv/MediConnect-Assistant" target="_blank"
+                            style="color: var(--primary); text-decoration: none; font-weight:600;">GitHub</a></span>
+                </div>
+                <ul>
+                    <li>Developed a comprehensive MERN stack healthcare platform with role-based access control (RBAC),
+                        secure JWT authentication, and real-time appointment management.</li>
+                    <li>Integrated AI-driven symptom analysis for preliminary diagnosis and automated PDF receipt
+                        generation with embedded QR codes, streamlining patient workflows.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category"><span class="skill-label">Programming Languages:</span> Java, C/C++,
+                    JavaScript</div>
+                <div class="skill-category"><span class="skill-label">Libraries/Frameworks:</span> ReactJS, Spring Boot,
+                    Spring AI, Spring Security, JPA, Hibernate</div>
+                <div class="skill-category"><span class="skill-label">Databases & Tools:</span> MySQL, PostgreSQL,
+                    MongoDB, Git &amp; GitHub</div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2>Achievements / Certifications</h2>
+            <ul>
+                <li>Achieved certification in the Walmart Advanced Software Engineering Job Simulation by Forage.</li>
+                <li>Oracle Cloud Infrastructure 2025 Certified Generative AI Professional course from Oracle University.
+                </li>
+                <li>Completed the Salesforce Developer training under the AgentBlazer Champion Program.</li>
+                <li>Received an 85% Merit Scholarship from SRM University AP to pursue a B.Tech in CSE.</li>
+            </ul>
+        </section>
+
+
+    </div>
+
+    <button class="print-btn" onclick="window.print()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9V2h12v7"></path>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Download / Print PDF
+    </button>
+</body>
+
+</html>
