@@ -88,7 +88,7 @@ const About = () => {
                         className="mt-8 flex justify-center md:justify-start"
                     >
                         <a
-                            href={`${import.meta.env.BASE_URL}resume.html`}
+                            href="/resume.html"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-medium rounded-full hover:shadow-lg hover:shadow-primary/30 transition-all duration-300"

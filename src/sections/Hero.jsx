@@ -20,7 +20,7 @@ const Hero = () => {
                         {/* Profile Image / Avatar Moved Here */}
                         <div className="my-6 flex justify-center relative font-normal">
                             <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-2xl border-4 border-white dark:border-slate-700 flex items-center justify-center relative bg-white p-2">
-                                <img src={`${import.meta.env.BASE_URL}profile_full_head.png`} alt="Bhupendra Yadav" className="w-full h-full object-contain scale-110 brightness-110 contrast-110 saturate-110" style={{ filter: 'brightness(1.1) contrast(1.15) saturate(1.1)' }} />
+                                <img src="/profile_full_head.png" alt="Bhupendra Yadav" className="w-full h-full object-contain scale-110 brightness-110 contrast-110 saturate-110" style={{ filter: 'brightness(1.1) contrast(1.15) saturate(1.1)' }} />
                             </div>
                         </div>
 
@@ -43,7 +43,7 @@ const Hero = () => {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="flex flex-wrap gap-4 justify-center"
                     >
-                        <a href={`${import.meta.env.BASE_URL}resume.html`} target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-primary hover:bg-indigo-600 text-white font-medium rounded-full transition-colors shadow-lg hover:shadow-indigo-500/30">
+                        <a href="/resume.html" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-primary hover:bg-indigo-600 text-white font-medium rounded-full transition-colors shadow-lg hover:shadow-indigo-500/30">
                             View Resume
                         </a>
                         <Link to="projects" smooth={true} duration={500} className="px-6 py-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-white font-medium rounded-full hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors shadow-sm cursor-pointer">

@@ -26,7 +26,7 @@ const Navbar = () => {
         { name: 'Experience', to: 'experience' },
         { name: 'Projects', to: 'projects' },
         { name: 'Contact', to: 'contact' },
-        { name: 'Resume', to: `${import.meta.env.BASE_URL}resume.html`, isLink: true },
+        { name: 'Resume', to: '/resume.html', isLink: true },
     ];
 
     return (

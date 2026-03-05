@@ -16,7 +16,7 @@ const Certifications = () => {
             icon: SiOracle,
             iconColor: "text-[#F80000]",
             date: "2025",
-            certificatePath: `${import.meta.env.BASE_URL}oracle_genai_cert.png`
+            certificatePath: "/oracle_genai_cert.png"
         },
         {
             title: "Salesforce Developer",
@@ -25,7 +25,7 @@ const Certifications = () => {
             icon: FaSalesforce,
             iconColor: "text-[#00A1E0]",
             date: "2025",
-            certificatePath: `${import.meta.env.BASE_URL}salesforce_cert.png`
+            certificatePath: "/salesforce_cert.png"
         },
         {
             title: "Walmart Global Tech",
@@ -34,7 +34,7 @@ const Certifications = () => {
             icon: FaLaptopCode,
             iconColor: "text-blue-600",
             date: "2025",
-            certificatePath: `${import.meta.env.BASE_URL}walmart_cert.png`
+            certificatePath: "/walmart_cert.png"
         }
     ];
 
