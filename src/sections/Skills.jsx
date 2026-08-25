@@ -7,9 +7,8 @@ import { VscVscode } from 'react-icons/vsc';
 
 const SkillCategory = ({ title, skills, delay }) => (
     <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay }}
         className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 hover:shadow-xl transition-shadow"
     >
@@ -57,10 +56,12 @@ const Skills = () => {
             ]
         },
         {
-            title: "AI & Data",
+            title: "AI & ML",
             skills: [
+                { name: "Machine Learning", icon: <FaBrain className="text-blue-500" /> },
+                { name: "Deep Learning", icon: <FaBrain className="text-purple-500" /> },
                 { name: "Generative AI", icon: <SiOpenai className="text-green-600" /> },
-                { name: "LLMs", icon: <FaBrain className="text-purple-500" /> },
+                { name: "LLMs", icon: <FaBrain className="text-indigo-500" /> },
                 { name: "Prompt Eng.", icon: <span className="text-lg">✨</span> },
             ]
         },

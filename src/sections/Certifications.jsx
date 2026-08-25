@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SectionContainer from '../components/SectionContainer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SiOracle } from 'react-icons/si';
+import { SiOracle, SiMongodb } from 'react-icons/si';
 import { FaExternalLinkAlt, FaTimes, FaSalesforce, FaLaptopCode } from 'react-icons/fa';
 
 const Certifications = () => {
@@ -35,6 +35,15 @@ const Certifications = () => {
             iconColor: "text-blue-600",
             date: "2025",
             certificatePath: "/walmart_cert.png"
+        },
+        {
+            title: "MongoDB Certified Associate Developer",
+            subtitle: "Database Engineering",
+            description: "Demonstrated knowledge and skills in MongoDB database development, data modeling, and query optimization.",
+            icon: SiMongodb,
+            iconColor: "text-green-500",
+            date: "2026",
+            certificatePath: "/mongodb_cert.pdf"
         }
     ];
 
@@ -43,8 +52,12 @@ const Certifications = () => {
     const handleViewCertificate = (cert) => {
         if (cert.certificatePath) {
             setActiveCert(cert);
-            setPreviewUrl(cert.certificatePath);
-            setFileType('image');
+            // Ensure path starts with BASE_URL if it's an absolute path from public
+            const fullPath = cert.certificatePath.startsWith('/')
+                ? `${import.meta.env.BASE_URL}${cert.certificatePath.slice(1)}`
+                : cert.certificatePath;
+            setPreviewUrl(fullPath);
+            setFileType(cert.certificatePath.toLowerCase().endsWith('.pdf') ? 'pdf' : 'image');
         }
     };
 
@@ -61,44 +74,44 @@ const Certifications = () => {
                 <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
             </div>
 
-            <div className="max-w-4xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto px-4">
                 {certifications.map((cert, index) => (
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        initial={{ opacity: 0, scale: 0.97 }}
+                        animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="bg-gradient-to-r from-white to-gray-50 dark:from-slate-800 dark:to-slate-800 p-8 rounded-2xl shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden mb-8 last:mb-0"
+                        className="bg-gradient-to-r from-white to-gray-50 dark:from-slate-800 dark:to-slate-800 p-5 md:p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-slate-700 relative overflow-hidden"
                     >
-                        <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-                            <cert.icon className="text-9xl text-gray-500" />
+                        <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+                            <cert.icon className="text-7xl text-gray-500" />
                         </div>
 
-                        <div className="flex flex-col md:flex-row items-center gap-8 relative z-10">
-                            <div className="w-32 h-32 md:w-40 md:h-40 bg-white rounded-full flex items-center justify-center shadow-md p-4 flex-shrink-0">
-                                <cert.icon className={`text-6xl ${cert.iconColor}`} />
+                        <div className="flex flex-col items-center gap-4 relative z-10 text-center">
+                            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm p-3 flex-shrink-0">
+                                <cert.icon className={`text-4xl ${cert.iconColor}`} />
                             </div>
 
-                            <div className="flex-1 text-center md:text-left">
-                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                            <div className="flex-1 text-center">
+                                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-1">
                                     {cert.title}
                                 </h3>
-                                <p className="text-xl text-primary font-medium mb-4">{cert.subtitle}</p>
-                                <p className="text-gray-600 dark:text-gray-400 mb-6">
+                                <p className="text-base text-primary font-medium mb-2">{cert.subtitle}</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400 leading-snug max-w-sm mx-auto">
                                     {cert.description}
                                 </p>
-                                <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                                    <button
-                                        onClick={() => handleViewCertificate(cert)}
-                                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-lg hover:bg-indigo-600 transition-colors shadow-lg cursor-pointer"
-                                    >
-                                        View Certificate <FaExternalLinkAlt className="text-sm" />
-                                    </button>
-                                    <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-gray-200 rounded-lg">
-                                        Issued: {cert.date}
-                                    </span>
-                                </div>
+                            </div>
+
+                            <div className="flex flex-col gap-1 shrink-0 mt-2 items-center w-full">
+                                <button
+                                    onClick={() => handleViewCertificate(cert)}
+                                    className="inline-flex items-center justify-center gap-1 px-2.5 py-1 text-[10px] font-medium bg-primary text-white rounded hover:bg-indigo-600 transition-colors shadow-sm cursor-pointer w-full md:w-auto"
+                                >
+                                    View Certificate <FaExternalLinkAlt className="text-[8px]" />
+                                </button>
+                                <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1 text-[10px] font-medium bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded w-full md:w-auto">
+                                    Issued: {cert.date}
+                                </span>
                             </div>
                         </div>
                     </motion.div>

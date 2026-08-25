@@ -5,9 +5,8 @@ import { FaSitemap, FaDatabase, FaNetworkWired } from 'react-icons/fa';
 
 const DiagramCard = ({ title, type, icon, delay }) => (
     <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay }}
         className="group relative bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-gray-100 dark:border-slate-700 cursor-pointer"
     >
