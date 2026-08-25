@@ -4,28 +4,12 @@ import Toast from '../components/Toast';
 import { motion } from 'framer-motion';
 import { FaPaperPlane, FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
 
-// emailjs client and configuration constants
-import emailjs from '@emailjs/browser';
-import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from '../config/emailConfig';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnpaeplo';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState(''); // '', 'sending', 'success', 'error'
     const [toast, setToast] = useState(null); // { message, type }
-
-    // initialize emailjs and log config values on mount
-    React.useEffect(() => {
-        try {
-            if (EMAILJS_PUBLIC_KEY) {
-                emailjs.init(EMAILJS_PUBLIC_KEY);
-                console.log('emailjs initialized with provided public key');
-            }
-        } catch (err) {
-            console.warn('emailjs.init error', err);
-        }
-
-        console.log('Contact mounted with config:', { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY: EMAILJS_PUBLIC_KEY ? EMAILJS_PUBLIC_KEY.replace(/.(?=.{4})/g, '*') : null });
-    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -34,23 +18,32 @@ const Contact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('handleSubmit called', formData);
         setStatus('sending');
+
         try {
-            await emailjs.send(
-                EMAILJS_SERVICE_ID,
-                EMAILJS_TEMPLATE_ID,
-                formData,
-                EMAILJS_PUBLIC_KEY
-            );
-            console.log('emailjs.send succeeded');
-            setStatus('success');
-            setFormData({ name: '', email: '', message: '' });
-            setToast({ message: 'Mail sent successfully!', type: 'success' });
+            const response = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+                setToast({ message: 'Message sent successfully!', type: 'success' });
+            } else {
+                const data = await response.json();
+                setStatus('error');
+                const errorMessage = data?.errors?.[0]?.message || 'Failed to send message.';
+                setToast({ message: errorMessage, type: 'error' });
+            }
         } catch (err) {
-            console.error('Email send error', err);
+            console.error('Formspree submit error:', err);
             setStatus('error');
-            setToast({ message: 'Failed to send message.', type: 'error' });
+            setToast({ message: 'Failed to send message. Please try again.', type: 'error' });
         }
     };
 
@@ -72,8 +65,7 @@ const Contact = () => {
             <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-12">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
                     className="md:w-1/2"
                 >
@@ -116,19 +108,18 @@ const Contact = () => {
 
                 <motion.div
                     initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
                     className="md:w-1/2 bg-gray-50 dark:bg-slate-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-slate-700"
                 >
-                    {/* using onClick for the button rather than form submit to avoid full-page reloads */}
-                    <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
-                            <div>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
                             <input
                                 type="text"
                                 id="name"
                                 name="name"
+                                required
                                 value={formData.name}
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600 focus:border-primary focus:ring-2 focus:ring-primary outline-none transition-all dark:text-white"
@@ -141,6 +132,7 @@ const Contact = () => {
                                 type="email"
                                 id="email"
                                 name="email"
+                                required
                                 value={formData.email}
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600 focus:border-primary focus:ring-2 focus:ring-primary outline-none transition-all dark:text-white"
@@ -153,6 +145,7 @@ const Contact = () => {
                                 id="message"
                                 name="message"
                                 rows="4"
+                                required
                                 value={formData.message}
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600 focus:border-primary focus:ring-2 focus:ring-primary outline-none transition-all dark:text-white"
@@ -160,8 +153,7 @@ const Contact = () => {
                             ></textarea>
                         </div>
                         <button
-                            type="button"
-                            onClick={handleSubmit}
+                            type="submit"
                             disabled={status === 'sending'}
                             className="w-full py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg hover:shadow-lg hover:opacity-90 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
