@@ -20,7 +20,7 @@ const Hero = () => {
                         {/* Profile Image / Avatar Moved Here */}
                         <div className="my-6 flex justify-center relative font-normal">
                             <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-2xl border-4 border-white dark:border-slate-700 flex items-center justify-center relative bg-white">
-                                <img src={`${import.meta.env.BASE_URL}profile_photo.jpg`} alt="Bhupendra Yadav" className="w-full h-full object-cover object-top" />
+                                <img src={`${import.meta.env.BASE_URL}profile_photo.jpg`} alt="Bhupendra Yadav" className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110" />
                             </div>
                         </div>
 
@@ -31,10 +31,9 @@ const Hero = () => {
                         <h3 className="text-3xl md:text-4xl font-medium text-gray-600 dark:text-gray-300 mb-6">
                             Full Stack Developer
                         </h3>
-                        <div className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-5xl mx-auto leading-relaxed flex flex-col gap-2">
-                            <p className="whitespace-nowrap sm:whitespace-normal md:whitespace-nowrap">AI/ML specialist, with Salesforce and medical imaging research internship experience.</p>
-                            <p className="whitespace-nowrap sm:whitespace-normal md:whitespace-nowrap">Passionate about building intelligent, scalable solutions.</p>
-                            <p className="font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap sm:whitespace-normal md:whitespace-nowrap">Turning ideas into impact, one project at a time.</p>
+                        <div className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 my-8 max-w-5xl mx-auto leading-relaxed flex flex-col gap-2">
+                            <p>AI/ML specialist with Salesforce and medical imaging research experience.</p>
+                            <p className="font-medium text-gray-700 dark:text-gray-300">Turning ideas into impact, one project at a time.</p>
                         </div>
                     </motion.div>
 
