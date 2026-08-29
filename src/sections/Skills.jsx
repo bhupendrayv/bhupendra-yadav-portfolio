@@ -84,10 +84,10 @@ const Skills = () => {
 
     return (
         <SectionContainer id="skills" className="bg-gray-50 dark:bg-slate-900/50">
-            <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">Technical Skills</h2>
+            <div className="text-center mb-10 md:mb-16">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 dark:text-white">Technical Skills</h2>
                 <div className="w-20 h-1 bg-secondary mx-auto rounded-full"></div>
-                <p className="mt-4 text-gray-600 dark:text-gray-400">A comprehensive toolkit for modern software engineering.</p>
+                <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400">A comprehensive toolkit for modern software engineering.</p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
