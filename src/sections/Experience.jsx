@@ -219,7 +219,7 @@ const ExperienceCard = ({ exp, index, onViewCert }) => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: index * 0.25 + 0.4 }}
-            className="ml-auto flex items-center gap-2"
+            className="ml-auto flex flex-wrap items-center gap-2 justify-end"
           >
             {isEditingYear ? (
               <input
@@ -436,7 +436,7 @@ const Experience = () => {
             Professional Journey
           </motion.span>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
             Work{' '}
             <span
               style={{
@@ -489,7 +489,7 @@ const Experience = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                <h3 className="text-sm sm:text-base md:text-xl font-bold text-gray-900 dark:text-white break-words pr-2">
                   {activeCert?.role} - {activeCert?.company} Certificate
                 </h3>
                 <button
