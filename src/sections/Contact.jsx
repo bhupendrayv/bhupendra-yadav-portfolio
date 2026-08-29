@@ -57,12 +57,12 @@ const Contact = () => {
                 />
             )}
             <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">Get In Touch</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 dark:text-white">Get In Touch</h2>
                 <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
                 <p className="mt-4 text-gray-600 dark:text-gray-400">Let's build something amazing together.</p>
             </div>
 
-            <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-12">
+            <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-6 md:gap-12">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -110,7 +110,7 @@ const Contact = () => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="md:w-1/2 bg-gray-50 dark:bg-slate-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-slate-700"
+                    className="md:w-1/2 bg-gray-50 dark:bg-slate-800 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-slate-700"
                 >
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
