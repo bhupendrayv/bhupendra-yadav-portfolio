@@ -69,8 +69,8 @@ const Certifications = () => {
 
     return (
         <SectionContainer id="certifications" className="bg-white dark:bg-slate-900">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">Certifications</h2>
+            <div className="text-center mb-10 md:mb-12">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 dark:text-white">Certifications</h2>
                 <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
             </div>
 
@@ -135,7 +135,7 @@ const Certifications = () => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center">
-                                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                                <h3 className="text-sm sm:text-base md:text-xl font-bold text-gray-900 dark:text-white break-words pr-2">
                                     {activeCert?.title} - {activeCert?.subtitle}
                                 </h3>
                                 <button
