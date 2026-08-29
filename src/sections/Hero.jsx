@@ -41,12 +41,12 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="flex flex-wrap gap-4 justify-center"
+                        className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full px-2 sm:px-0"
                     >
-                        <a href={`${import.meta.env.BASE_URL}resume.html`} target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-primary hover:bg-indigo-600 text-white font-medium rounded-full transition-colors shadow-lg hover:shadow-indigo-500/30">
+                        <a href={`${import.meta.env.BASE_URL}resume.html`} target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-primary hover:bg-indigo-600 text-white font-medium rounded-full transition-colors shadow-lg hover:shadow-indigo-500/30 text-center">
                             View Resume
                         </a>
-                        <Link to="projects" smooth={true} duration={500} className="px-6 py-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-white font-medium rounded-full hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors shadow-sm cursor-pointer">
+                        <Link to="projects" smooth={true} duration={500} className="px-6 py-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-white font-medium rounded-full hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors shadow-sm cursor-pointer text-center">
                             View Projects
                         </Link>
                     </motion.div>
@@ -56,7 +56,7 @@ const Hero = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
-                        className="mt-12 flex gap-6 text-gray-400 dark:text-gray-500 justify-center"
+                        className="mt-8 sm:mt-12 flex gap-4 sm:gap-6 text-gray-400 dark:text-gray-500 justify-center flex-wrap"
                     >
                         <FaJava className="h-8 w-8 hover:text-[#007396] transition-colors" title="Java" />
                         <FaPython className="h-8 w-8 hover:text-[#3776AB] transition-colors" title="Python" />
