@@ -57,12 +57,12 @@ const About = () => {
 
     return (
         <SectionContainer id="about" className="bg-white dark:bg-slate-900">
-            <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">About Me</h2>
+            <div className="text-center mb-10 md:mb-16">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 dark:text-white">About Me</h2>
                 <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -70,24 +70,24 @@ const About = () => {
                     className="relative md:left-8 lg:left-16"
                 >
 
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-justify">
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-left sm:text-justify">
                         Hi, I'm <strong className="text-gray-900 dark:text-white">Bhupendra Yadav</strong>, a B.Tech CSE student who loves turning ideas into real, working software. I started out deep in <strong className="text-gray-900 dark:text-white">Full Stack Development</strong> — especially the frontend side, building things that feel smooth and intuitive to use — and that curiosity has since pulled me toward <strong className="text-gray-900 dark:text-white">AI and Machine Learning</strong>, which is where I'm focused now.
                     </p>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-justify">
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-left sm:text-justify">
                         Along the way, I interned as a <strong className="text-gray-900 dark:text-white">Salesforce Developer</strong>, working with CRM automation and cloud-based apps, and later took on a <strong className="text-gray-900 dark:text-white">University Research Internship</strong> exploring <strong className="text-gray-900 dark:text-white">malaria detection from blood smear images</strong> using computer vision — a project that really sharpened how I think through problems.
                     </p>
-                    <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-justify">
+                    <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-left sm:text-justify">
                         I'm happiest when I'm learning something new and building with it. My goal is simple: keep growing as an engineer and create solutions that actually make a difference.
                     </p>
 
-                    <div className="grid grid-cols-2 gap-4 mt-8">
-                        <div className="p-4 bg-gray-50 dark:bg-slate-800 rounded-lg text-center">
-                            <span className="block text-2xl font-bold text-primary mb-1">4+</span>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Projects Completed</span>
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-6 sm:mt-8">
+                        <div className="p-3 sm:p-4 bg-gray-50 dark:bg-slate-800 rounded-lg text-center">
+                            <span className="block text-xl sm:text-2xl font-bold text-primary mb-1">4+</span>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Projects Completed</span>
                         </div>
-                        <div className="p-4 bg-gray-50 dark:bg-slate-800 rounded-lg text-center">
-                            <span className="block text-2xl font-bold text-secondary mb-1">5+</span>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Certifications</span>
+                        <div className="p-3 sm:p-4 bg-gray-50 dark:bg-slate-800 rounded-lg text-center">
+                            <span className="block text-xl sm:text-2xl font-bold text-secondary mb-1">5+</span>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Certifications</span>
                         </div>
                     </div>
 
@@ -109,7 +109,7 @@ const About = () => {
                     </motion.div>
                 </motion.div>
 
-                <div className="grid gap-4 max-w-md w-full justify-self-center md:justify-self-end md:-mt-32 lg:-mt-40 md:-mr-4 lg:-mr-12">
+                <div className="grid gap-4 max-w-md w-full justify-self-center md:justify-self-end md:-mt-32 lg:-mt-40 md:-mr-4 lg:-mr-12 overflow-hidden">
                     {highlights.map((item, index) => (
                         <motion.div
                             key={index}
