@@ -339,7 +339,7 @@ const Projects = () => (
           Portfolio
         </motion.span>
 
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
           Featured{' '}
           <span
             style={{
@@ -353,7 +353,7 @@ const Projects = () => (
           </span>
         </h2>
 
-        <p className="text-gray-500 dark:text-slate-400 text-base md:text-lg max-w-xl mx-auto">
+        <p className="text-gray-500 dark:text-slate-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto">
           Real-world applications built with modern tech stacks — and more exciting projects on the way.
         </p>
 
