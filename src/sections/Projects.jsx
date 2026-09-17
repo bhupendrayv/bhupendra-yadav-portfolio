@@ -38,12 +38,10 @@ const upcomingProjects = [
       'Full-stack e-commerce app with product browsing, secure authentication, cart management, and Stripe payment gateway integration.',
     tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
     tagColors: ['#61dafb', '#68a063', '#f97316', '#47a248', '#6772e5'],
-    gradientFrom: '#1e1b4b',
-    gradientTo: '#312e81',
     accentColor: '#818cf8',
-    glowColor: 'rgba(99,102,241,0.3)',
     icon: <FaShoppingCart />,
-    techIcons: [<FaReact className="text-cyan-400" />, <FaNodeJs className="text-green-400" />, <SiMongodb className="text-green-500" />, <SiStripe className="text-indigo-400" />],
+    progressValue: '75%',
+    progressText: 'Backend: 90% | Frontend: 60%',
   },
   {
     id: 'taskapp',
@@ -52,24 +50,12 @@ const upcomingProjects = [
       'Collaborative Kanban-style task manager with real-time updates, drag-and-drop boards, and team workspaces for enhanced productivity.',
     tags: ['React', 'Firebase', 'Redux', 'Tailwind CSS'],
     tagColors: ['#61dafb', '#f59e0b', '#7c3aed', '#06b6d4'],
-    gradientFrom: '#1a1a2e',
-    gradientTo: '#16213e',
     accentColor: '#f59e0b',
-    glowColor: 'rgba(245,158,11,0.3)',
     icon: <FaTasks />,
-    techIcons: [<FaReact className="text-cyan-400" />, <SiFirebase className="text-amber-400" />, <SiRedux className="text-purple-400" />, <FaCode className="text-blue-400" />],
+    progressValue: '45%',
+    progressText: 'Core UI: 80% | Firebase: 10%',
   },
 ];
-
-/* ─── Animated code lines (decorative) ──────────────────── */
-const CodeLine = ({ width, delay, color }) => (
-  <motion.div
-    className="h-1.5 rounded-full"
-    style={{ width, background: color, opacity: 0.25 }}
-    animate={{ opacity: [0.15, 0.4, 0.15], scaleX: [1, 1.05, 1] }}
-    transition={{ duration: 2.5 + delay, repeat: Infinity, ease: 'easeInOut', delay }}
-  />
-);
 
 /* ─── Featured Real Project Card ─────────────────────────── */
 const FeaturedCard = ({ project, index }) => (
@@ -78,7 +64,7 @@ const FeaturedCard = ({ project, index }) => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay: index * 0.15 }}
     whileHover={{ y: -6, transition: { duration: 0.25 } }}
-    className="group relative rounded-2xl overflow-hidden bg-white dark:bg-transparent border border-gray-200 dark:border-transparent shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300"
+    className="group relative rounded-2xl overflow-hidden bg-white dark:bg-transparent border border-gray-200 dark:border-transparent shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300 flex flex-col"
     style={{
       ...(typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? { border: `1px solid ${project.accentColor}30` } : {}),
     }}
@@ -103,7 +89,7 @@ const FeaturedCard = ({ project, index }) => (
       <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/20 to-transparent dark:from-slate-900/80 dark:via-slate-900/20 dark:to-transparent" />
 
       {/* Status badge */}
-      <div className="absolute top-2 left-2">
+      <div className="absolute top-2 left-2 z-10">
         <span
           className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
           style={{ background: 'rgba(16,185,129,0.2)', border: '1px solid rgba(16,185,129,0.5)', color: '#34d399' }}
@@ -114,7 +100,7 @@ const FeaturedCard = ({ project, index }) => (
       </div>
 
       {/* Bottom title overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-3">
+      <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
         <div className="flex items-center gap-1.5 mb-0.5">
           <span className="text-sm" style={{ color: project.accentColor }}>{project.icon}</span>
           <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">{project.subtitle}</span>
@@ -124,11 +110,11 @@ const FeaturedCard = ({ project, index }) => (
     </div>
 
     {/* Card body */}
-    <div className="p-4 bg-gray-50 dark:bg-slate-900/85 backdrop-blur-sm">
+    <div className="p-4 bg-gray-50 dark:bg-slate-900/85 backdrop-blur-sm flex-1 flex flex-col">
       <p className="text-gray-500 dark:text-slate-400 text-xs leading-relaxed mb-3">{project.description}</p>
 
       {/* Tags */}
-      <div className="flex flex-wrap gap-1.5 mb-3">
+      <div className="flex flex-wrap gap-1.5 mb-3 mt-auto">
         {project.tags.map((tag, i) => (
           <span
             key={i}
@@ -145,7 +131,7 @@ const FeaturedCard = ({ project, index }) => (
       </div>
 
       {/* Action buttons */}
-      <div className="flex gap-2 pt-3 border-t border-gray-200 dark:border-slate-700/50">
+      <div className="flex gap-2 pt-3 border-t border-gray-200 dark:border-slate-700/50 mt-auto">
         <motion.a
           href={project.github}
           target="_blank"
@@ -181,100 +167,77 @@ const ComingSoonCard = ({ project, index }) => (
     initial={{ opacity: 0, y: 25 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay: 0.15 + index * 0.15 }}
-    whileHover={{ y: -5, transition: { duration: 0.25 } }}
-    className="group relative rounded-2xl overflow-hidden"
+    whileHover={{ y: -6, transition: { duration: 0.25 } }}
+    className="group relative rounded-2xl overflow-hidden bg-white dark:bg-transparent border border-gray-200 dark:border-transparent shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300 flex flex-col"
     style={{
-      background: `linear-gradient(135deg, ${project.gradientFrom}, ${project.gradientTo})`,
-      border: `1px solid ${project.accentColor}25`,
-      boxShadow: `0 8px 32px rgba(0,0,0,0.35)`,
-      transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
-      minHeight: '280px',
+      ...(typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? { border: `1px solid ${project.accentColor}30` } : {}),
     }}
     onHoverStart={e => {
-      e.currentTarget.style.boxShadow = `0 20px 55px rgba(0,0,0,0.5), 0 0 25px ${project.glowColor}`;
-      e.currentTarget.style.borderColor = `${project.accentColor}50`;
+      e.currentTarget.style.boxShadow = `0 20px 60px rgba(0,0,0,0.15), 0 0 30px ${project.accentColor}20`;
     }}
     onHoverEnd={e => {
-      e.currentTarget.style.boxShadow = `0 8px 32px rgba(0,0,0,0.35)`;
-      e.currentTarget.style.borderColor = `${project.accentColor}25`;
+      e.currentTarget.style.boxShadow = '';
     }}
   >
-    {/* Animated gradient orb */}
-    <motion.div
-      className="absolute -top-16 -right-16 w-48 h-48 rounded-full pointer-events-none"
-      style={{ background: project.accentColor, filter: 'blur(60px)', opacity: 0.08 }}
-      animate={{ scale: [1, 1.2, 1], opacity: [0.06, 0.13, 0.06] }}
-      transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-    />
-
     {/* Top accent bar */}
     <div className="h-1 w-full" style={{ background: `linear-gradient(90deg, ${project.accentColor}, transparent)` }} />
+    
+    {/* Project Image Placeholder */}
+    <div className="relative h-40 overflow-hidden bg-gray-100 dark:bg-slate-800/80 flex items-center justify-center">
+      {/* Wireframe Mockup */}
+      <div className="absolute inset-0 p-4 grid grid-cols-4 gap-2 opacity-20 filter blur-[2px]">
+        <div className="col-span-4 h-4 bg-slate-500 rounded"></div>
+        <div className="col-span-1 h-20 bg-slate-500 rounded"></div>
+        <div className="col-span-3 h-20 bg-slate-500 rounded"></div>
+        <div className="col-span-2 h-10 bg-slate-500 rounded"></div>
+        <div className="col-span-2 h-10 bg-slate-500 rounded"></div>
+      </div>
+      
+      {/* Overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-white/10 dark:from-slate-900/90 dark:via-slate-900/50 dark:to-slate-900/20" />
 
-    {/* In Development badge */}
-    <div className="absolute top-4 right-4 z-10">
-      <motion.span
-        animate={{ opacity: [0.7, 1, 0.7] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm"
-        style={{
-          background: `${project.accentColor}20`,
-          border: `1px solid ${project.accentColor}45`,
-          color: project.accentColor,
-        }}
-      >
-        <MdBolt className="w-3 h-3" />
-        In Development
-      </motion.span>
+      {/* Status badge */}
+      <div className="absolute top-2 left-2 z-10">
+        <span
+          className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
+          style={{ background: `${project.accentColor}20`, border: `1px solid ${project.accentColor}50`, color: project.accentColor }}
+        >
+          <MdBolt className="w-2.5 h-2.5 animate-pulse" />
+          In Development
+        </span>
+      </div>
+
+      {/* Bottom title overlay */}
+      <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
+        <div className="flex items-center gap-1.5 mb-0.5">
+          <span className="text-sm" style={{ color: project.accentColor }}>{project.icon}</span>
+          <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Coming Soon</span>
+        </div>
+        <h3 className="text-base font-bold text-gray-900 dark:text-white">{project.title}</h3>
+      </div>
     </div>
 
-    <div className="p-4 relative z-10 h-full flex flex-col">
-      {/* Header */}
-      <div className="flex items-start gap-2.5 mb-3">
-        <div
-          className="p-2 rounded-lg text-base"
-          style={{ background: `${project.accentColor}20`, color: project.accentColor }}
-        >
-          {project.icon}
+    {/* Card body */}
+    <div className="p-4 bg-gray-50 dark:bg-slate-900/85 backdrop-blur-sm flex-1 flex flex-col">
+      {/* Progress Indicator */}
+      <div className="mb-3 flex items-center gap-2">
+        <div className="flex-1 h-1.5 bg-gray-200 dark:bg-slate-700/50 rounded-full overflow-hidden border border-gray-300 dark:border-slate-700">
+          <div className="h-full rounded-full" style={{ width: project.progressValue, background: project.accentColor }}></div>
         </div>
-        <div>
-          <h3 className="text-base font-bold text-gray-900 dark:text-white leading-tight">{project.title}</h3>
-          <p className="text-[10px] text-slate-500 mt-0.5">Coming Soon</p>
-        </div>
+        <span className="text-[10px] font-medium text-gray-500 dark:text-slate-400 whitespace-nowrap">{project.progressText}</span>
       </div>
 
-      {/* Animated code-line decorations */}
-      <div className="space-y-1.5 mb-3">
-        <CodeLine width="75%" delay={0} color={project.accentColor} />
-        <CodeLine width="55%" delay={0.4} color={project.accentColor} />
-        <CodeLine width="65%" delay={0.8} color={project.accentColor} />
-      </div>
-
-      {/* Description */}
       <p className="text-gray-500 dark:text-slate-400 text-xs leading-relaxed mb-3">{project.description}</p>
 
-      {/* Tech icons row */}
-      <div className="flex items-center gap-2.5 mb-3">
-        {project.techIcons.map((icon, i) => (
-          <motion.div
-            key={i}
-            className="text-base"
-            animate={{ y: [0, -3, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
-          >
-            {icon}
-          </motion.div>
-        ))}
-      </div>
-
       {/* Tags */}
-      <div className="flex flex-wrap gap-1.5 mb-3">
+      <div className="flex flex-wrap gap-1.5 mb-3 mt-auto">
         {project.tags.map((tag, i) => (
           <span
             key={i}
             className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
             style={{
               background: `${project.tagColors[i] || project.accentColor}18`,
-              border: `1px solid ${project.tagColors[i] || project.accentColor}35`,
+              border: `1px solid ${project.tagColors[i] || project.accentColor}40`,
               color: project.tagColors[i] || project.accentColor,
             }}
           >
@@ -283,19 +246,19 @@ const ComingSoonCard = ({ project, index }) => (
         ))}
       </div>
 
-      {/* Locked buttons */}
-      <div className="flex gap-2 pt-3 border-t mt-auto" style={{ borderColor: `${project.accentColor}15` }}>
+      {/* Action buttons (Disabled state) */}
+      <div className="flex gap-2 pt-3 border-t border-gray-200 dark:border-slate-700/50 mt-auto">
         <div
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold opacity-40 cursor-not-allowed select-none"
-          style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: '#94a3b8' }}
+          title="Available on release"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-100 dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.08] text-gray-400 dark:text-slate-500 cursor-not-allowed select-none"
         >
-          <FaLock className="w-2.5 h-2.5" /> GitHub
+          <FaLock className="w-3 h-3 opacity-50" /> GitHub
         </div>
         <div
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold opacity-40 cursor-not-allowed select-none"
-          style={{ background: `${project.accentColor}15`, border: `1px solid ${project.accentColor}25`, color: project.accentColor }}
+          title="Available on release"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-100 dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.08] text-gray-400 dark:text-slate-500 cursor-not-allowed select-none"
         >
-          <FaLock className="w-2.5 h-2.5" /> Live Demo
+          <FaLock className="w-3 h-3 opacity-50" /> Live Demo
         </div>
       </div>
     </div>
@@ -367,38 +330,14 @@ const Projects = () => (
       </motion.div>
 
 
-      {/* Live project row */}
-      <div className="mb-8">
-        <motion.p
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-4 flex items-center gap-2"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
-          Live Projects
-        </motion.p>
-        <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 max-w-xl gap-6">
-          {realProjects.map((project, i) => (
-            <FeaturedCard key={project.id} project={project} index={i} />
-          ))}
-        </div>
-      </div>
-
-      {/* Coming soon row */}
-      <div>
-        <motion.p
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-4 flex items-center gap-2"
-        >
-          <MdBolt className="text-amber-400 animate-pulse" />
-          In Development
-        </motion.p>
-        <div className="grid md:grid-cols-2 gap-6">
-          {upcomingProjects.map((project, i) => (
-            <ComingSoonCard key={project.id} project={project} index={i} />
-          ))}
-        </div>
+      {/* Projects Grid */}
+      <div className="grid md:grid-cols-2 gap-6">
+        {realProjects.map((project, i) => (
+          <FeaturedCard key={project.id} project={project} index={i} />
+        ))}
+        {upcomingProjects.map((project, i) => (
+          <ComingSoonCard key={project.id} project={project} index={realProjects.length + i} />
+        ))}
       </div>
 
       {/* Bottom CTA */}
