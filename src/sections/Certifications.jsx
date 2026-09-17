@@ -7,6 +7,8 @@ import { FaExternalLinkAlt, FaTimes, FaSalesforce, FaLaptopCode } from 'react-ic
 const Certifications = () => {
     const [previewUrl, setPreviewUrl] = useState(null);
     const [fileType, setFileType] = useState(null);
+    const [activeCert, setActiveCert] = useState(null);
+    const [imgLoaded, setImgLoaded] = useState(false);
 
     const certifications = [
         {
@@ -47,24 +49,19 @@ const Certifications = () => {
         }
     ];
 
-    const [activeCert, setActiveCert] = useState(null);
-
     const handleViewCertificate = (cert) => {
-        if (cert.certificatePath) {
-            setActiveCert(cert);
-            // Ensure path starts with BASE_URL if it's an absolute path from public
-            const fullPath = cert.certificatePath.startsWith('/')
-                ? `${import.meta.env.BASE_URL}${cert.certificatePath.slice(1)}`
-                : cert.certificatePath;
-            setPreviewUrl(fullPath);
-            setFileType(cert.certificatePath.toLowerCase().endsWith('.pdf') ? 'pdf' : 'image');
-        }
+        setImgLoaded(false);
+        setActiveCert(cert);
+        // Public folder files are served at root — use path directly (no BASE_URL manipulation)
+        setPreviewUrl(cert.certificatePath);
+        setFileType(cert.certificatePath.toLowerCase().endsWith('.pdf') ? 'pdf' : 'image');
     };
 
     const closeModal = () => {
         setPreviewUrl(null);
         setFileType(null);
         setActiveCert(null);
+        setImgLoaded(false);
     };
 
     return (
@@ -105,9 +102,9 @@ const Certifications = () => {
                             <div className="flex flex-col gap-1 shrink-0 mt-2 items-center w-full">
                                 <button
                                     onClick={() => handleViewCertificate(cert)}
-                                    className="inline-flex items-center justify-center gap-1 px-2.5 py-1 text-[10px] font-medium bg-primary text-white rounded hover:bg-indigo-600 transition-colors shadow-sm cursor-pointer w-full md:w-auto"
+                                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-semibold bg-primary text-white rounded-lg hover:bg-indigo-600 active:scale-95 transition-all shadow-md cursor-pointer w-full md:w-auto"
                                 >
-                                    View Certificate <FaExternalLinkAlt className="text-[8px]" />
+                                    View Certificate <FaExternalLinkAlt className="text-[9px]" />
                                 </button>
                                 <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1 text-[10px] font-medium bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded w-full md:w-auto">
                                     Issued: {cert.date}
@@ -118,47 +115,77 @@ const Certifications = () => {
                 ))}
             </div>
 
+            {/* Certificate Modal */}
             <AnimatePresence>
                 {previewUrl && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"
+                        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/85 backdrop-blur-sm p-4"
                         onClick={closeModal}
                     >
                         <motion.div
-                            initial={{ scale: 0.9 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0.9 }}
-                            className="bg-white dark:bg-slate-800 rounded-lg shadow-2xl relative max-w-5xl w-full max-h-[90vh] flex flex-col"
+                            initial={{ scale: 0.85, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.85, opacity: 0, y: 20 }}
+                            transition={{ type: 'spring', damping: 22, stiffness: 260 }}
+                            className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl relative max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="p-4 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center">
-                                <h3 className="text-sm sm:text-base md:text-xl font-bold text-gray-900 dark:text-white break-words pr-2">
-                                    {activeCert?.title} - {activeCert?.subtitle}
-                                </h3>
+                            {/* Modal Header */}
+                            <div className="px-5 py-4 border-b border-gray-200 dark:border-slate-700 flex justify-between items-center flex-shrink-0">
+                                <div>
+                                    <h3 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white">
+                                        {activeCert?.title}
+                                    </h3>
+                                    <p className="text-xs text-primary mt-0.5">{activeCert?.subtitle}</p>
+                                </div>
                                 <button
                                     onClick={closeModal}
-                                    className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white bg-gray-100 dark:bg-slate-700 rounded-full transition-colors"
+                                    className="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 rounded-full transition-colors flex-shrink-0 ml-4"
+                                    aria-label="Close certificate preview"
                                 >
-                                    <FaTimes size={20} />
+                                    <FaTimes size={16} />
                                 </button>
                             </div>
-                            <div className="p-2 flex-1 overflow-hidden flex items-center justify-center">
-                                {fileType?.includes('pdf') ? (
+
+                            {/* Modal Content */}
+                            <div className="flex-1 overflow-auto flex items-center justify-center p-4 bg-gray-50 dark:bg-slate-900/50 min-h-[300px]">
+                                {fileType === 'pdf' ? (
                                     <iframe
                                         src={previewUrl}
-                                        className="w-full h-full min-h-[500px] md:min-h-[700px]"
+                                        className="w-full rounded"
+                                        style={{ minHeight: '70vh' }}
                                         title="Certificate Preview"
                                     />
                                 ) : (
-                                    <img
-                                        src={previewUrl}
-                                        alt="Certificate Preview"
-                                        className="w-full h-auto max-h-[85vh] object-contain"
-                                    />
+                                    <div className="relative w-full flex items-center justify-center">
+                                        {/* Loading spinner */}
+                                        {!imgLoaded && (
+                                            <div className="flex flex-col items-center justify-center gap-3 py-16">
+                                                <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+                                                <p className="text-xs text-gray-500 dark:text-slate-400">Loading certificate…</p>
+                                            </div>
+                                        )}
+                                        <img
+                                            src={previewUrl}
+                                            alt={`${activeCert?.title} Certificate`}
+                                            onLoad={() => setImgLoaded(true)}
+                                            className={`w-full h-auto max-h-[78vh] object-contain rounded-lg shadow-lg transition-opacity duration-300 ${imgLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
+                                        />
+                                    </div>
                                 )}
+                            </div>
+
+                            {/* Modal Footer */}
+                            <div className="px-5 py-3 border-t border-gray-200 dark:border-slate-700 flex justify-end flex-shrink-0">
+                                <button
+                                    onClick={closeModal}
+                                    className="px-4 py-2 text-xs font-semibold text-gray-600 dark:text-slate-300 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 rounded-lg transition-colors"
+                                >
+                                    Close
+                                </button>
                             </div>
                         </motion.div>
                     </motion.div>
