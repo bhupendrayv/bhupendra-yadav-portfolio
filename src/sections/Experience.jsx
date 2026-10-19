@@ -53,7 +53,7 @@ const experiences = [
     role: 'Research Intern',
     company: 'SRM University AP',
     companyType: 'Academic Research',
-    period: '2026',
+    period: 'May 2026 – July 2026',
     duration: '2 Months',
     type: 'research',
     gradient: 'from-purple-500 via-violet-500 to-pink-500',
