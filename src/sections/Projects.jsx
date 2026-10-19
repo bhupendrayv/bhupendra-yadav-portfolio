@@ -2,17 +2,33 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
   FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaPython,
-  FaCode, FaRocket, FaHospital, FaShoppingCart, FaTasks, FaLock
+  FaCode, FaRocket, FaHospital, FaShoppingCart, FaTasks, FaLock, FaCoffee
 } from 'react-icons/fa';
-import { SiMongodb, SiFirebase, SiRedux, SiStripe } from 'react-icons/si';
+import { SiMongodb, SiFirebase, SiRedux, SiStripe, SiJavascript, SiSqlite, SiMysql, SiExpress } from 'react-icons/si';
 import { MdBolt } from 'react-icons/md';
 import mediconnectImg from '../assets/mediconnect.png';
+import cafecoreImg from '../assets/cafecore.jpg';
 
 /* ─── Safe viewport ─────────────────────────────────────── */
 const VP = { once: true, amount: 0, margin: '0px 0px -60px 0px' };
 
 /* ─── Data ───────────────────────────────────────────────── */
 const realProjects = [
+  {
+    id: 'cafecore',
+    title: 'CafeCore',
+    subtitle: 'Full-Stack Cafe POS & Management System',
+    description:
+      'Production-grade cafe point-of-sale system featuring order management, multi-gateway payments (Stripe, UPI, Cash), real-time kitchen tracking, role-based auth, and live business analytics.',
+    tags: ['JavaScript (ES6+)', 'HTML5 / CSS3', 'Express', 'SQLite / MySQL', 'Stripe API'],
+    tagColors: ['#f7df1e', '#e34f26', '#f97316', '#00758f', '#6772e5'],
+    github: 'https://github.com/bhupendrayv/CafeCore',
+    live: 'https://cafecore-frontend-liard.vercel.app/',
+    image: cafecoreImg,
+    accentColor: '#f59e0b',
+    icon: <FaCoffee />,
+    status: 'live',
+  },
   {
     id: 'mediconnect',
     title: 'MediConnect Assistant',
@@ -32,25 +48,13 @@ const realProjects = [
 
 const upcomingProjects = [
   {
-    id: 'ecommerce',
-    title: 'E-Commerce Platform',
-    description:
-      'Full-stack e-commerce app with product browsing, secure authentication, cart management, and Stripe payment gateway integration.',
-    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
-    tagColors: ['#61dafb', '#68a063', '#f97316', '#47a248', '#6772e5'],
-    accentColor: '#818cf8',
-    icon: <FaShoppingCart />,
-    progressValue: '75%',
-    progressText: 'Backend: 90% | Frontend: 60%',
-  },
-  {
     id: 'taskapp',
     title: 'Task Management App',
     description:
       'Collaborative Kanban-style task manager with real-time updates, drag-and-drop boards, and team workspaces for enhanced productivity.',
     tags: ['React', 'Firebase', 'Redux', 'Tailwind CSS'],
     tagColors: ['#61dafb', '#f59e0b', '#7c3aed', '#06b6d4'],
-    accentColor: '#f59e0b',
+    accentColor: '#818cf8',
     icon: <FaTasks />,
     progressValue: '45%',
     progressText: 'Core UI: 80% | Firebase: 10%',
@@ -339,28 +343,6 @@ const Projects = () => (
           <ComingSoonCard key={project.id} project={project} index={realProjects.length + i} />
         ))}
       </div>
-
-      {/* Bottom CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        className="text-center mt-16"
-      >
-        <p className="text-gray-400 dark:text-slate-500 text-sm mb-4">See all my work on GitHub</p>
-        <motion.a
-          href="https://github.com/bhupendrayv"
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.04, y: -2 }}
-          whileTap={{ scale: 0.97 }}
-          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl text-sm font-bold text-white bg-gradient-to-r from-gray-800 to-gray-700 dark:from-slate-800 dark:to-slate-700 border border-gray-300 dark:border-white/10 shadow-lg dark:shadow-[0_8px_25px_rgba(0,0,0,0.4)] hover:shadow-xl transition-all duration-300"
-        >
-          <FaGithub className="w-4 h-4" />
-          View GitHub Profile
-          <FaExternalLinkAlt className="w-3 h-3 opacity-60" />
-        </motion.a>
-      </motion.div>
     </div>
   </section>
 );
