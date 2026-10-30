@@ -83,7 +83,7 @@ const Skills = () => {
     ];
 
     return (
-        <SectionContainer id="skills" className="bg-gray-50 dark:bg-slate-900/50">
+        <SectionContainer id="skills" className="bg-white dark:bg-slate-900">
             <div className="text-center mb-10 md:mb-16">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 dark:text-white">Technical Skills</h2>
                 <div className="w-20 h-1 bg-secondary mx-auto rounded-full"></div>

@@ -14,6 +14,8 @@ export default {
             },
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
+                display: ['"Bebas Neue"', '"Oswald"', 'sans-serif'],
+                subheading: ['Montserrat', 'sans-serif'],
             }
         },
     },

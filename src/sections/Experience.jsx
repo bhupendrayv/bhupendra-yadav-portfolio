@@ -404,7 +404,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="relative py-16 w-full overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-[#070c1a] dark:via-[#0d1229] dark:to-[#070c1a] transition-colors duration-300"
+      className="relative py-16 w-full overflow-hidden bg-white dark:bg-slate-900 transition-colors duration-300"
     >
       {/* Background Orbs */}
       <FloatingOrb style={{ width: 400, height: 400, top: '-10%', left: '-15%' }} color="#3b82f6" />

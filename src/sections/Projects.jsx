@@ -273,7 +273,7 @@ const ComingSoonCard = ({ project, index }) => (
 const Projects = () => (
   <section
     id="projects"
-    className="relative py-12 w-full overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-[#0a0f1e] dark:to-[#060b18] transition-colors duration-300"
+    className="relative py-12 w-full overflow-hidden bg-white dark:bg-slate-900 transition-colors duration-300"
   >
     {/* Subtle background orbs */}
     <motion.div
