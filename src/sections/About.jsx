@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionContainer from '../components/SectionContainer';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaLaptopCode, FaAward, FaDatabase } from 'react-icons/fa';
+import { FaGraduationCap, FaLaptopCode, FaAward, FaDatabase, FaFileAlt } from 'react-icons/fa';
 
 const About = () => {
     const highlights = [
@@ -50,80 +50,84 @@ const About = () => {
                     <FaDatabase className="text-2xl text-green-600" />
                 </motion.div>
             ),
-            title: "MongoDB Certified Associate Developer",
-            desc: ""
+            title: "MongoDB Certified",
+            desc: "Associate Developer (2026)"
         }
     ];
 
     return (
-        <SectionContainer id="about" className="bg-white dark:bg-slate-900">
-            <div className="text-center mb-10 md:mb-16">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 dark:text-white">About Me</h2>
-                <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+        <SectionContainer id="about" className="bg-slate-50/50 dark:bg-slate-900/60 py-16">
+            <div className="text-center mb-12 md:mb-16">
+                <span className="text-xs font-bold uppercase tracking-widest text-sky-500 dark:text-sky-400 mb-2 inline-block">
+                    Get To Know Me
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-bold dark:text-white">About Me</h2>
+                <div className="w-20 h-1 bg-gradient-to-r from-sky-500 to-indigo-500 mx-auto rounded-full mt-3"></div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="grid md:grid-cols-12 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
+                {/* Left Column: Narrative Bio */}
                 <motion.div
-                    initial={{ opacity: 0, x: -50 }}
+                    initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="relative md:left-8 lg:left-16"
+                    className="md:col-span-7 flex flex-col justify-center"
                 >
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mb-4">
+                        Passionate Engineer building at the intersection of <span className="text-sky-500">AI</span> & <span className="text-indigo-500">Scalable Web Systems</span>.
+                    </h3>
 
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-left sm:text-justify">
-                        Hi, I'm <strong className="text-gray-900 dark:text-white">Bhupendra Yadav</strong>, a B.Tech CSE student who loves turning ideas into real, working software. I started out deep in <strong className="text-gray-900 dark:text-white">Full Stack Development</strong> — especially the frontend side, building things that feel smooth and intuitive to use — and that curiosity has since pulled me toward <strong className="text-gray-900 dark:text-white">AI and Machine Learning</strong>, which is where I'm focused now.
+                    <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed text-left sm:text-justify text-sm sm:text-base">
+                        Hi, I'm <strong className="text-slate-900 dark:text-white">Bhupendra Yadav</strong>, a B.Tech Computer Science & Engineering student at SRM University AP. My technical journey began deeply rooted in <strong className="text-slate-900 dark:text-white">Full Stack Web Development</strong>, creating responsive, intuitive applications that prioritize performance and clean user experiences.
                     </p>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-left sm:text-justify">
-                        Along the way, I interned as a <strong className="text-gray-900 dark:text-white">Salesforce Developer</strong>, working with CRM automation and cloud-based apps, and later took on a <strong className="text-gray-900 dark:text-white">University Research Internship</strong> exploring <strong className="text-gray-900 dark:text-white">malaria detection from blood smear images</strong> using computer vision — a project that really sharpened how I think through problems.
+                    <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed text-left sm:text-justify text-sm sm:text-base">
+                        Driven by curiosity for intelligence systems, I expanded my focus to <strong className="text-slate-900 dark:text-white">AI and Deep Learning</strong>. During my <strong className="text-slate-900 dark:text-white">University Research Internship</strong>, I spearheaded a computer vision system analyzing over 27,000 microscopic blood smear images for malaria detection, achieving 96.84% classification accuracy.
                     </p>
-                    <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-left sm:text-justify">
-                        I'm happiest when I'm learning something new and building with it. My goal is simple: keep growing as an engineer and create solutions that actually make a difference.
+                    <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-left sm:text-justify text-sm sm:text-base">
+                        Complemented by practical experience as a <strong className="text-slate-900 dark:text-white">Salesforce Developer Intern</strong> automating business workflows and multiple industry certifications, I enjoy turning intricate technical challenges into impactful, real-world solutions.
                     </p>
 
-                    <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-6 sm:mt-8">
-                        <div className="p-3 sm:p-4 bg-gray-50 dark:bg-slate-800 rounded-lg text-center">
-                            <span className="block text-xl sm:text-2xl font-bold text-primary mb-1">4+</span>
-                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Projects Completed</span>
+                    {/* Stats Highlights */}
+                    <div className="grid grid-cols-2 gap-4 mt-2">
+                        <div className="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm text-center">
+                            <span className="block text-2xl sm:text-3xl font-extrabold text-sky-500 mb-1">Production</span>
+                            <span className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">Web & AI Projects</span>
                         </div>
-                        <div className="p-3 sm:p-4 bg-gray-50 dark:bg-slate-800 rounded-lg text-center">
-                            <span className="block text-xl sm:text-2xl font-bold text-secondary mb-1">5+</span>
-                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Certifications</span>
+                        <div className="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm text-center">
+                            <span className="block text-2xl sm:text-3xl font-extrabold text-indigo-500 mb-1">4+</span>
+                            <span className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">Industry Certifications</span>
                         </div>
                     </div>
 
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                        className="mt-8 flex justify-center md:justify-start"
-                    >
+                    <div className="mt-8 flex justify-center md:justify-start">
                         <a
                             href={`${import.meta.env.BASE_URL}resume.html`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-medium rounded-full hover:shadow-lg hover:shadow-primary/30 transition-all duration-300"
+                            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-medium rounded-xl hover:shadow-lg hover:shadow-sky-500/25 transition-all duration-300 text-sm gap-2"
                         >
-                            <FaLaptopCode className="mr-2" />
-                            Preview Resume
+                            <FaFileAlt className="text-xs" />
+                            <span>Preview Full Resume</span>
                         </a>
-                    </motion.div>
+                    </div>
                 </motion.div>
 
-                <div className="grid gap-4 max-w-md w-full justify-self-center md:justify-self-end md:-mt-32 lg:-mt-40 md:-mr-4 lg:-mr-12 overflow-hidden">
+                {/* Right Column: Key Credentials / Highlights */}
+                <div className="md:col-span-5 flex flex-col gap-3.5 w-full">
                     {highlights.map((item, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 15 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 flex items-center gap-4 hover:transform hover:scale-105 transition-all duration-300"
+                            transition={{ duration: 0.4, delay: index * 0.1 }}
+                            className="p-4 bg-white dark:bg-slate-800/90 rounded-2xl shadow-sm border border-slate-200/70 dark:border-slate-700/70 flex items-center gap-4 hover:shadow-md hover:border-sky-400/40 transition-all duration-300"
                         >
-                            <div className="p-3 bg-gray-100 dark:bg-slate-700 rounded-full">
+                            <div className="p-3 bg-slate-50 dark:bg-slate-700 rounded-xl shrink-0">
                                 {item.icon}
                             </div>
                             <div>
-                                <h4 className="text-lg font-bold dark:text-white">{item.title}</h4>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">{item.desc}</p>
+                                <h4 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">{item.title}</h4>
+                                <p className="text-xs text-slate-500 dark:text-slate-400">{item.desc}</p>
                             </div>
                         </motion.div>
                     ))}

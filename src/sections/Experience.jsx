@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaCode, FaDatabase, FaCloud, FaGitAlt, FaBrain, FaEye,
   FaCheckCircle, FaExternalLinkAlt, FaCertificate, FaCalendarAlt,
@@ -139,8 +138,7 @@ const HighlightRow = ({ icon, text, accentColor, delay }) => (
 const ExperienceCard = ({ exp, index, onViewCert }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const [period, setPeriod] = useState(exp.period);
-  const [isEditingYear, setIsEditingYear] = useState(false);
+
 
   return (
     <motion.div
@@ -221,39 +219,7 @@ const ExperienceCard = ({ exp, index, onViewCert }) => {
             transition={{ delay: index * 0.25 + 0.4 }}
             className="ml-auto flex flex-wrap items-center gap-2 justify-end"
           >
-            {isEditingYear ? (
-              <input
-                type="text"
-                value={period}
-                autoFocus
-                onBlur={() => setIsEditingYear(false)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === 'Escape') {
-                    setIsEditingYear(false);
-                  }
-                }}
-                onChange={(e) => setPeriod(e.target.value)}
-                className="w-16 px-2 py-0.5 text-xs font-semibold text-center rounded-lg border focus:outline-none focus:ring-1 focus:ring-primary bg-white dark:bg-slate-800 text-gray-800 dark:text-white"
-                style={{ borderColor: exp.borderGlow }}
-              />
-            ) : (
-              <motion.button
-                type="button"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsEditingYear(true)}
-                title="Click to change year"
-                className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-lg cursor-pointer transition-colors"
-                style={{
-                  background: `${exp.borderGlow}18`,
-                  border: `1px solid ${exp.borderGlow}35`,
-                  color: exp.accentColor,
-                }}
-              >
-                <FaCalendarAlt className="w-3 h-3" />
-                {period}
-              </motion.button>
-            )}
+            <div className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg" style={{ background: `${exp.borderGlow}18`, border: `1px solid ${exp.borderGlow}35`, color: exp.accentColor }}><FaCalendarAlt className="w-3 h-3" />{exp.period}</div>
             <span className="text-[11px] text-slate-500 font-medium">{exp.duration}</span>
           </motion.div>
         </div>
