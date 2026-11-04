@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './sections/Hero';
-import About from './sections/About';
-import Skills from './sections/Skills';
-import Certifications from './sections/Certifications';
-import Experience from './sections/Experience';
-import Projects from './sections/Projects';
-import Contact from './sections/Contact';
+import AIAssistant from './components/AIAssistant';
 import { Element } from 'react-scroll';
+
+// Lazy-load below-the-fold sections to maximize initial page loading speed & optimize FCP/LCP
+const About = lazy(() => import('./sections/About'));
+const Skills = lazy(() => import('./sections/Skills'));
+const Certifications = lazy(() => import('./sections/Certifications'));
+const Experience = lazy(() => import('./sections/Experience'));
+const Projects = lazy(() => import('./sections/Projects'));
+const Contact = lazy(() => import('./sections/Contact'));
+
+// Lightweight loading placeholder with smooth pulsing animation
+const SectionFallback = () => (
+  <div className="w-full py-20 flex justify-center items-center">
+    <div className="w-8 h-8 rounded-full border-2 border-sky-400 border-t-transparent animate-spin" />
+  </div>
+);
 
 function App() {
   return (
@@ -19,32 +29,36 @@ function App() {
           <Hero />
         </Element>
 
-        <Element name="about">
-          <About />
-        </Element>
+        <Suspense fallback={<SectionFallback />}>
+          <Element name="about">
+            <About />
+          </Element>
 
-        <Element name="skills">
-          <Skills />
-        </Element>
+          <Element name="skills">
+            <Skills />
+          </Element>
 
-        {/* Certifications can be part of Skills or separate */}
-        <Certifications />
+          <Certifications />
 
-        <Element name="experience">
-          <Experience />
-        </Element>
+          <Element name="experience">
+            <Experience />
+          </Element>
 
-        <Element name="projects">
-          <Projects />
-        </Element>
+          <Element name="projects">
+            <Projects />
+          </Element>
 
+          <Element name="contact">
+            <Contact />
+          </Element>
+        </Suspense>
+      </main>
 
-        <Element name="contact">
-          <Contact />
-        </Element>
-      </main >
+      {/* Interactive AI Portfolio Assistant for Recruiters */}
+      <AIAssistant />
+
       <Footer />
-    </div >
+    </div>
   );
 }
 
