@@ -1,0 +1,29 @@
+name: Website Uptime & Health Monitor
+
+on:
+  schedule:
+    # Run automated health ping every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  uptime-check:
+    name: Check Production Website & Projects Uptime
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping Portfolio Domain
+        run: |
+          echo "Checking portfolio homepage..."
+          curl -sSf -m 15 https://www.yadavbhupendra.com.np/ > /dev/null || echo "::warning ::Portfolio homepage may be experiencing downtime."
+
+      - name: Ping MediConnect Assistant Live Demo
+        run: |
+          echo "Checking MediConnect Assistant..."
+          curl -sSf -m 15 https://medi-connect-assistant.vercel.app > /dev/null || echo "::warning ::MediConnect Assistant may be down."
+
+      - name: Ping CafeCore Live Demo
+        run: |
+          echo "Checking CafeCore..."
+          curl -sSf -m 15 https://cafecore-frontend-liard.vercel.app/ > /dev/null || echo "::warning ::CafeCore POS may be down."
+
