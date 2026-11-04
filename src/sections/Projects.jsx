@@ -1,350 +1,285 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaPython,
-  FaCode, FaRocket, FaHospital, FaShoppingCart, FaTasks, FaLock, FaCoffee
+  FaGithub, FaExternalLinkAlt, FaHospital, FaCoffee, FaShieldAlt,
+  FaCheckCircle
 } from 'react-icons/fa';
-import { SiMongodb, SiFirebase, SiRedux, SiStripe, SiJavascript, SiSqlite, SiMysql, SiExpress } from 'react-icons/si';
-import { MdBolt } from 'react-icons/md';
 import mediconnectImg from '../assets/mediconnect.png';
 import cafecoreImg from '../assets/cafecore.jpg';
 
-/* ─── Safe viewport ─────────────────────────────────────── */
-const VP = { once: true, amount: 0, margin: '0px 0px -60px 0px' };
-
-/* ─── Data ───────────────────────────────────────────────── */
-const realProjects = [
-  {
-    id: 'cafecore',
-    title: 'CafeCore',
-    subtitle: 'Full-Stack Cafe POS & Management System',
-    description:
-      'Production-grade cafe point-of-sale system featuring order management, multi-gateway payments (Stripe, UPI, Cash), real-time kitchen tracking, role-based auth, and live business analytics.',
-    tags: ['JavaScript (ES6+)', 'HTML5 / CSS3', 'Express', 'SQLite / MySQL', 'Stripe API'],
-    tagColors: ['#f7df1e', '#e34f26', '#f97316', '#00758f', '#6772e5'],
-    github: 'https://github.com/bhupendrayv/CafeCore',
-    live: 'https://cafecore-frontend-liard.vercel.app/',
-    image: cafecoreImg,
-    accentColor: '#f59e0b',
-    icon: <FaCoffee />,
-    status: 'live',
-  },
+/* ─── Projects Data ──────────────────────────────────────── */
+const projects = [
   {
     id: 'mediconnect',
     title: 'MediConnect Assistant',
-    subtitle: 'Healthcare Platform',
-    description:
-      'A modern MERN-stack healthcare platform enabling seamless patient–doctor connectivity with automated appointment scheduling, role-based dashboards, and an AI Health Assistant powered by natural language.',
-    tags: ['MERN Stack', 'React', 'Node.js', 'MongoDB', 'AI Integration'],
-    tagColors: ['#3b82f6', '#61dafb', '#68a063', '#47a248', '#8b5cf6'],
+    badge: 'MERN + AI',
+    tagline: 'Healthcare Connectivity Platform & AI Assistant',
+    overview:
+      'Full-stack healthcare portal enabling automated doctor appointment booking, secure role-based access, and an AI health assistant for instant symptom evaluation.',
+    problemSolved:
+      'Fragmented healthcare access, delayed consultation triage, and inefficient appointment scheduling.',
+    contribution:
+      'Engineered MERN architecture, JWT/RBAC auth, AI symptom evaluation assistant, Stripe checkout, and automated PDF receipts with verification QR codes.',
+    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS', 'Stripe API', 'AI Integration'],
+    keyFeatures: [
+      'AI-driven natural language symptom analysis assistant',
+      'Role-based access control (RBAC) & JWT authentication',
+      'Stripe checkout for online consultation booking',
+      'Automated PDF receipt generation with verification QR codes',
+    ],
+    status: 'Live',
+    statusType: 'live',
+    image: mediconnectImg,
     github: 'https://github.com/bhupendrayv/MediConnect-Assistant',
     live: 'https://medi-connect-assistant.vercel.app',
-    image: mediconnectImg,
-    accentColor: '#3b82f6',
-    icon: <FaHospital />,
-    status: 'live',
+    icon: <FaHospital className="text-sky-400" />,
+    accent: '#38bdf8',
   },
-];
-
-const upcomingProjects = [
   {
-    id: 'taskapp',
-    title: 'Task Management App',
-    description:
-      'Collaborative Kanban-style task manager with real-time updates, drag-and-drop boards, and team workspaces for enhanced productivity.',
-    tags: ['React', 'Firebase', 'Redux', 'Tailwind CSS'],
-    tagColors: ['#61dafb', '#f59e0b', '#7c3aed', '#06b6d4'],
-    accentColor: '#818cf8',
-    icon: <FaTasks />,
-    progressValue: '45%',
-    progressText: 'Core UI: 80% | Firebase: 10%',
+    id: 'cafecore',
+    title: 'CafeCore',
+    badge: 'Production POS',
+    tagline: 'Full-Stack POS & Business Management System',
+    overview:
+      'Point-of-sale platform handling multi-gateway orders and payments, live kitchen order dispatching, staff permissions, and dynamic sales analytics.',
+    problemSolved:
+      'Disorganized cafe orders, slow kitchen communication, and fragmented cash/digital billing tracking.',
+    contribution:
+      'Designed end-to-end full stack architecture, integrated multi-method billing (Stripe, UPI, Cash), built live kitchen order queue, and structured relational schemas.',
+    technologies: ['JavaScript (ES6+)', 'Node.js', 'Express', 'SQLite / MySQL', 'Stripe API', 'HTML5 / CSS3'],
+    keyFeatures: [
+      'Multi-gateway payment processing (Stripe, UPI, Cash)',
+      'Real-time kitchen order tracking with automated timers',
+      'Visual sales analytics and business performance metrics',
+      'Role-based controls for manager and cashier staff',
+    ],
+    status: 'Live',
+    statusType: 'live',
+    image: cafecoreImg,
+    github: 'https://github.com/bhupendrayv/CafeCore',
+    live: 'https://cafecore-frontend-liard.vercel.app/',
+    icon: <FaCoffee className="text-amber-400" />,
+    accent: '#f59e0b',
+  },
+  {
+    id: 'spam-detection',
+    title: 'Email & SMS Spam Detection',
+    badge: 'ML & NLP',
+    tagline: 'Intelligent Communication Classifier',
+    overview:
+      'End-to-end Natural Language Processing classification model that analyzes message linguistics to accurately detect phishing and unwanted spam messages.',
+    problemSolved:
+      'Phishing risks and spam clutter in digital communication channels.',
+    contribution:
+      'Built textual cleanup pipelines (tokenization, stemming, TF-IDF vectorization), evaluated supervised ML algorithms, and built an interactive prediction interface.',
+    technologies: ['Python', 'Scikit-learn', 'NLTK', 'Pandas', 'NumPy', 'Machine Learning'],
+    keyFeatures: [
+      'Automated NLP text preprocessing & TF-IDF feature extraction',
+      'Comparative classifier model benchmarking (precision & recall)',
+      'Instant spam/ham prediction on user-inputted communications',
+      'Robust evaluation metrics against class-imbalanced datasets',
+    ],
+    status: 'Completed',
+    statusType: 'completed',
+    image: null,
+    github: 'https://github.com/bhupendrayv',
+    live: null,
+    icon: <FaShieldAlt className="text-purple-400" />,
+    accent: '#a855f7',
   },
 ];
 
-/* ─── Featured Real Project Card ─────────────────────────── */
-const FeaturedCard = ({ project, index }) => (
+/* ─── Compact & Perfectly Proportioned Project Card ──────── */
+const ProjectCard = ({ project, index }) => (
   <motion.div
-    initial={{ opacity: 0, y: 25 }}
+    initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: index * 0.15 }}
-    whileHover={{ y: -6, transition: { duration: 0.25 } }}
-    className="group relative rounded-2xl overflow-hidden bg-white dark:bg-transparent border border-gray-200 dark:border-transparent shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300 flex flex-col"
-    style={{
-      ...(typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? { border: `1px solid ${project.accentColor}30` } : {}),
-    }}
-    onHoverStart={e => {
-      e.currentTarget.style.boxShadow = `0 20px 60px rgba(0,0,0,0.15), 0 0 30px ${project.accentColor}30`;
-    }}
-    onHoverEnd={e => {
-      e.currentTarget.style.boxShadow = '';
-    }}
+    transition={{ duration: 0.45, delay: index * 0.1 }}
+    whileHover={{ y: -5, transition: { duration: 0.2 } }}
+    className="group relative rounded-2xl overflow-hidden bg-white dark:bg-slate-800/95 border border-slate-200 dark:border-slate-700/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
   >
-    {/* Top accent bar */}
-    <div className="h-1 w-full" style={{ background: `linear-gradient(90deg, ${project.accentColor}, #8b5cf6, #06b6d4)` }} />
-    
-    {/* Project Image */}
-    <div className="relative h-40 overflow-hidden bg-gray-100 dark:bg-slate-800">
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-      />
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/20 to-transparent dark:from-slate-900/80 dark:via-slate-900/20 dark:to-transparent" />
+    {/* Subtle top accent strip */}
+    <div className="h-1 w-full" style={{ background: `linear-gradient(90deg, ${project.accent}, #6366f1)` }} />
 
-      {/* Status badge */}
-      <div className="absolute top-2 left-2 z-10">
-        <span
-          className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
-          style={{ background: 'rgba(16,185,129,0.2)', border: '1px solid rgba(16,185,129,0.5)', color: '#34d399' }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          Live
-        </span>
+    <div>
+      {/* Scaled Visual Header (reduced height for clean compactness) */}
+      <div className="relative h-36 w-full overflow-hidden bg-slate-100 dark:bg-slate-900 flex items-center justify-center">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={`${project.title} Screenshot`}
+            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900">
+            <div
+              className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-1.5 shadow-inner"
+              style={{ background: `${project.accent}15`, color: project.accent }}
+            >
+              {project.icon}
+            </div>
+            <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+              {project.badge}
+            </span>
+          </div>
+        )}
+
+        {/* Status Badge */}
+        <div className="absolute top-2.5 left-2.5 z-10">
+          {project.statusType === 'live' ? (
+            <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/90 text-white shadow-sm backdrop-blur-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+              Live
+            </span>
+          ) : (
+            <span className="flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-900/80 dark:bg-slate-800/90 text-slate-200 border border-slate-700 shadow-sm backdrop-blur-sm">
+              <FaCheckCircle className="text-emerald-400 text-[10px]" />
+              {project.status}
+            </span>
+          )}
+        </div>
+
+        {/* Floating Category Pill */}
+        <div className="absolute bottom-2.5 right-2.5 z-10">
+          <span className="px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-black/60 text-white backdrop-blur-md">
+            {project.badge}
+          </span>
+        </div>
       </div>
 
-      {/* Bottom title overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
-        <div className="flex items-center gap-1.5 mb-0.5">
-          <span className="text-sm" style={{ color: project.accentColor }}>{project.icon}</span>
-          <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">{project.subtitle}</span>
+      {/* Content Section with Tight Padding */}
+      <div className="p-4 sm:p-5">
+        {/* Title & Tagline */}
+        <div className="mb-2.5">
+          <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors leading-tight">
+            {project.title}
+          </h3>
+          <p className="text-[11px] font-semibold text-sky-600 dark:text-sky-400 mt-0.5 truncate">
+            {project.tagline}
+          </p>
         </div>
-        <h3 className="text-base font-bold text-gray-900 dark:text-white">{project.title}</h3>
+
+        {/* Overview */}
+        <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed mb-3 line-clamp-2">
+          {project.overview}
+        </p>
+
+        {/* Problem Solved Callout */}
+        <div className="mb-3 p-2.5 rounded-lg bg-slate-50 dark:bg-slate-750/50 border border-slate-200/70 dark:border-slate-700/60 text-[11px]">
+          <p className="text-slate-700 dark:text-slate-300 leading-snug">
+            <strong className="text-slate-900 dark:text-white font-semibold">Problem: </strong>
+            {project.problemSolved}
+          </p>
+        </div>
+
+        {/* Key Features */}
+        <div className="mb-3">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1.5">
+            Key Features
+          </p>
+          <ul className="space-y-1">
+            {project.keyFeatures.map((feature, i) => (
+              <li key={i} className="text-[11px] text-slate-600 dark:text-slate-300 flex items-start gap-1.5 leading-snug">
+                <span className="text-emerald-500 font-bold shrink-0">✓</span>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Actual Contribution */}
+        <div className="mb-3.5 p-2.5 rounded-lg bg-sky-50/70 dark:bg-sky-950/20 border border-sky-100 dark:border-sky-900/40 text-[11px]">
+          <p className="text-slate-700 dark:text-slate-300 leading-snug">
+            <strong className="text-sky-700 dark:text-sky-400 font-semibold">Contribution: </strong>
+            {project.contribution}
+          </p>
+        </div>
+
+        {/* Technology Badges */}
+        <div>
+          <div className="flex flex-wrap gap-1">
+            {project.technologies.map((tech, i) => (
+              <span
+                key={i}
+                className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-slate-100 dark:bg-slate-700/80 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-600/70"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
 
-    {/* Card body */}
-    <div className="p-4 bg-gray-50 dark:bg-slate-900/85 backdrop-blur-sm flex-1 flex flex-col">
-      <p className="text-gray-500 dark:text-slate-400 text-xs leading-relaxed mb-3">{project.description}</p>
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-1.5 mb-3 mt-auto">
-        {project.tags.map((tag, i) => (
-          <span
-            key={i}
-            className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-            style={{
-              background: `${project.tagColors[i] || '#3b82f6'}18`,
-              border: `1px solid ${project.tagColors[i] || '#3b82f6'}40`,
-              color: project.tagColors[i] || '#3b82f6',
-            }}
+    {/* Footer Link Buttons */}
+    <div className="p-4 sm:p-5 pt-0">
+      <div className="flex gap-2 pt-3 border-t border-slate-200 dark:border-slate-700/70">
+        {project.live && (
+          <motion.a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-white bg-gradient-to-r from-sky-500 to-indigo-600 shadow-sm hover:shadow-md transition-all cursor-pointer"
           >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {/* Action buttons */}
-      <div className="flex gap-2 pt-3 border-t border-gray-200 dark:border-slate-700/50 mt-auto">
+            <FaExternalLinkAlt className="text-[10px]" />
+            <span>Live Demo</span>
+          </motion.a>
+        )}
         <motion.a
           href={project.github}
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.04, y: -1 }}
-          whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-100 dark:bg-white/[0.06] border border-gray-200 dark:border-white/[0.12] text-gray-700 dark:text-slate-200"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-650 transition-colors cursor-pointer ${
+            project.live ? 'flex-1' : 'w-full'
+          }`}
         >
-          <FaGithub className="w-3 h-3" /> GitHub
+          <FaGithub className="text-xs" />
+          <span>GitHub</span>
         </motion.a>
-        <motion.a
-          href={project.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.04, y: -1 }}
-          whileTap={{ scale: 0.97 }}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white"
-          style={{
-            background: `linear-gradient(135deg, ${project.accentColor}cc, #8b5cf6cc)`,
-            boxShadow: `0 3px 10px ${project.accentColor}40`,
-          }}
-        >
-          <FaExternalLinkAlt className="w-2.5 h-2.5" /> Live Demo
-        </motion.a>
-      </div>
-    </div>
-  </motion.div>
-);
-
-/* ─── Coming Soon Card ───────────────────────────────────── */
-const ComingSoonCard = ({ project, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 25 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: 0.15 + index * 0.15 }}
-    whileHover={{ y: -6, transition: { duration: 0.25 } }}
-    className="group relative rounded-2xl overflow-hidden bg-white dark:bg-transparent border border-gray-200 dark:border-transparent shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300 flex flex-col"
-    style={{
-      ...(typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? { border: `1px solid ${project.accentColor}30` } : {}),
-    }}
-    onHoverStart={e => {
-      e.currentTarget.style.boxShadow = `0 20px 60px rgba(0,0,0,0.15), 0 0 30px ${project.accentColor}20`;
-    }}
-    onHoverEnd={e => {
-      e.currentTarget.style.boxShadow = '';
-    }}
-  >
-    {/* Top accent bar */}
-    <div className="h-1 w-full" style={{ background: `linear-gradient(90deg, ${project.accentColor}, transparent)` }} />
-    
-    {/* Project Image Placeholder */}
-    <div className="relative h-40 overflow-hidden bg-gray-100 dark:bg-slate-800/80 flex items-center justify-center">
-      {/* Wireframe Mockup */}
-      <div className="absolute inset-0 p-4 grid grid-cols-4 gap-2 opacity-20 filter blur-[2px]">
-        <div className="col-span-4 h-4 bg-slate-500 rounded"></div>
-        <div className="col-span-1 h-20 bg-slate-500 rounded"></div>
-        <div className="col-span-3 h-20 bg-slate-500 rounded"></div>
-        <div className="col-span-2 h-10 bg-slate-500 rounded"></div>
-        <div className="col-span-2 h-10 bg-slate-500 rounded"></div>
-      </div>
-      
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-white/10 dark:from-slate-900/90 dark:via-slate-900/50 dark:to-slate-900/20" />
-
-      {/* Status badge */}
-      <div className="absolute top-2 left-2 z-10">
-        <span
-          className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
-          style={{ background: `${project.accentColor}20`, border: `1px solid ${project.accentColor}50`, color: project.accentColor }}
-        >
-          <MdBolt className="w-2.5 h-2.5 animate-pulse" />
-          In Development
-        </span>
-      </div>
-
-      {/* Bottom title overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
-        <div className="flex items-center gap-1.5 mb-0.5">
-          <span className="text-sm" style={{ color: project.accentColor }}>{project.icon}</span>
-          <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Coming Soon</span>
-        </div>
-        <h3 className="text-base font-bold text-gray-900 dark:text-white">{project.title}</h3>
-      </div>
-    </div>
-
-    {/* Card body */}
-    <div className="p-4 bg-gray-50 dark:bg-slate-900/85 backdrop-blur-sm flex-1 flex flex-col">
-      {/* Progress Indicator */}
-      <div className="mb-3 flex items-center gap-2">
-        <div className="flex-1 h-1.5 bg-gray-200 dark:bg-slate-700/50 rounded-full overflow-hidden border border-gray-300 dark:border-slate-700">
-          <div className="h-full rounded-full" style={{ width: project.progressValue, background: project.accentColor }}></div>
-        </div>
-        <span className="text-[10px] font-medium text-gray-500 dark:text-slate-400 whitespace-nowrap">{project.progressText}</span>
-      </div>
-
-      <p className="text-gray-500 dark:text-slate-400 text-xs leading-relaxed mb-3">{project.description}</p>
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-1.5 mb-3 mt-auto">
-        {project.tags.map((tag, i) => (
-          <span
-            key={i}
-            className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
-            style={{
-              background: `${project.tagColors[i] || project.accentColor}18`,
-              border: `1px solid ${project.tagColors[i] || project.accentColor}40`,
-              color: project.tagColors[i] || project.accentColor,
-            }}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {/* Action buttons (Disabled state) */}
-      <div className="flex gap-2 pt-3 border-t border-gray-200 dark:border-slate-700/50 mt-auto">
-        <div
-          title="Available on release"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-100 dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.08] text-gray-400 dark:text-slate-500 cursor-not-allowed select-none"
-        >
-          <FaLock className="w-3 h-3 opacity-50" /> GitHub
-        </div>
-        <div
-          title="Available on release"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-100 dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.08] text-gray-400 dark:text-slate-500 cursor-not-allowed select-none"
-        >
-          <FaLock className="w-3 h-3 opacity-50" /> Live Demo
-        </div>
       </div>
     </div>
   </motion.div>
 );
 
 /* ─── Main Section ───────────────────────────────────────── */
-const Projects = () => (
-  <section
-    id="projects"
-    className="relative py-12 w-full overflow-hidden bg-white dark:bg-slate-900 transition-colors duration-300"
-  >
-    {/* Subtle background orbs */}
-    <motion.div
-      className="absolute top-20 left-[-10%] w-96 h-96 rounded-full pointer-events-none dark:opacity-[0.05] opacity-[0.03]"
-      style={{ background: '#3b82f6', filter: 'blur(80px)' }}
-      animate={{ y: [0, -20, 0] }}
-      transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-    />
-    <motion.div
-      className="absolute bottom-20 right-[-5%] w-72 h-72 rounded-full pointer-events-none dark:opacity-[0.06] opacity-[0.03]"
-      style={{ background: '#8b5cf6', filter: 'blur(70px)' }}
-      animate={{ y: [0, 20, 0] }}
-      transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-    />
-
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        className="text-center mb-16"
-      >
-        <motion.span
-          initial={{ opacity: 0, letterSpacing: '0.1em' }}
-          animate={{ opacity: 1, letterSpacing: '0.3em' }}
-          transition={{ duration: 0.8 }}
-          className="inline-block text-xs font-bold uppercase tracking-widest mb-4 text-primary dark:text-blue-400"
-        >
-          Portfolio
-        </motion.span>
-
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-          Featured{' '}
-          <span
-            style={{
-              background: 'linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            Projects
+const Projects = () => {
+  return (
+    <section
+      id="projects"
+      className="relative py-14 sm:py-16 w-full overflow-hidden bg-slate-50/50 dark:bg-slate-900/60 transition-colors duration-300"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-10 sm:mb-12">
+          <span className="text-xs font-bold uppercase tracking-widest text-sky-500 dark:text-sky-400 mb-1.5 inline-block">
+            Featured Builds
           </span>
-        </h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">
+            Projects{' '}
+            <span className="bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">
+              Showcase
+            </span>
+          </h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-sky-500 to-indigo-500 mx-auto rounded-full mb-3" />
+          <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm max-w-xl mx-auto">
+            Production full-stack web applications and machine learning classification systems.
+          </p>
+        </div>
 
-        <p className="text-gray-500 dark:text-slate-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto">
-          Real-world applications built with modern tech stacks — and more exciting projects on the way.
-        </p>
-
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="w-20 h-1 mx-auto mt-6 rounded-full origin-left"
-          style={{ background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)' }}
-        />
-      </motion.div>
-
-
-      {/* Projects Grid */}
-      <div className="grid md:grid-cols-2 gap-6">
-        {realProjects.map((project, i) => (
-          <FeaturedCard key={project.id} project={project} index={i} />
-        ))}
-        {upcomingProjects.map((project, i) => (
-          <ComingSoonCard key={project.id} project={project} index={realProjects.length + i} />
-        ))}
+        {/* Proportional 3-column Grid on desktop, 2-column on tablet, 1-column on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default Projects;
